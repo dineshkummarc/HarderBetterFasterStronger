@@ -5,7 +5,7 @@ using System.Globalization;
 using System.Web.Mvc;
 using System.Web.Security;
 
-namespace harderbetterfasterstronger.Models
+namespace HarderBetterFasterStronger.Models
 {
 
     public class ChangePasswordModel

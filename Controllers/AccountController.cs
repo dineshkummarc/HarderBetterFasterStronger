@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
-using harderbetterfasterstronger.Models;
+using HarderBetterFasterStronger.Models;
 
-namespace harderbetterfasterstronger.Controllers
+namespace HarderBetterFasterStronger.Controllers
 {
     public class AccountController : Controller
     {
