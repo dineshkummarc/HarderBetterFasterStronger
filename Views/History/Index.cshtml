@@ -1,4 +1,4 @@
-﻿@model IDictionary<string, IList<HarderBetterFasterStronger.Models.Activity>>
+﻿@model Dictionary<string, List<HarderBetterFasterStronger.Models.Activity>>
 
 @{
     ViewBag.Title = "History - Harder Better Faster Stronger";
@@ -10,18 +10,14 @@
 
 <h2>History</h2>
 
-@*@foreach (var keyValuePair in Model)
+@foreach (var keyValuePair in Model)
 {
     <h3>@keyValuePair.Key</h3>
-    <table>
-        <tr>
-        @foreach (var value in keyValuePair.Value)
-        {
-            <td>
-                @value.Date
-                @value.Weight
-            </td>
-        }
-        </tr>
-    </table>
-}*@
+    
+    <ul>
+        @foreach (var activity in keyValuePair.Value)
+         {
+             <li>@activity.Date - @activity.Weight</li>
+         }
+     </ul>
+}

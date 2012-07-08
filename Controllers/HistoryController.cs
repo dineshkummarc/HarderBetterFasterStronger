@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using HarderBetterFasterStronger.Core;
+using HarderBetterFasterStronger.Models;
 
 namespace HarderBetterFasterStronger.Controllers
 {
@@ -18,7 +19,9 @@ namespace HarderBetterFasterStronger.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            Dictionary<string, List<Activity>> activityHistory = activityManager.GetActivityHistory();
+
+            return View(activityHistory);
         }
     }
 }

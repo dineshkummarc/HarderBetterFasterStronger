@@ -82,7 +82,7 @@ namespace HarderBetterFasterStronger.Core
         /// Gets a complete history of all activities.
         /// </summary>
         /// <returns>A dictionary where the key is the name of the activity and the value is a list of all activity records by that name.</returns>
-        public IDictionary<string, List<Activity>> GetActivityHistory()
+        public Dictionary<string, List<Activity>> GetActivityHistory()
         {
             IDictionary<string, List<Activity>> result = new Dictionary<string, List<Activity>>();
             IList<Activity> allActivities = null;
