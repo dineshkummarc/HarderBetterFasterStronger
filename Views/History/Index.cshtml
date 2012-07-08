@@ -1,23 +1,128 @@
-﻿@model Dictionary<string, List<HarderBetterFasterStronger.Models.Activity>>
+﻿@using HarderBetterFasterStronger.Core.Constants
+@model Dictionary<string, List<HarderBetterFasterStronger.Models.Activity>>
 
 @{
     ViewBag.Title = "History - Harder Better Faster Stronger";
+    ViewBag.Page = "History";
 }
 
 @section Head {
     <script src="@Url.Content("~/Assets/Javascript/history.js")"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var weights = [
+                @foreach (var activity in Model)
+                {
+                    if (activity.Key == "Barbell Squat")
+                    {
+                        foreach (var record in activity.Value)
+                        {
+                            <text>"@record.Weight",</text>
+                        }
+                    }
+                }
+            ];
+
+            var canvas = document.getElementById("squat");
+
+            if (canvas.getContext) {
+                var ctx1 = canvas.getContext("2d");
+                var ctx2 = canvas.getContext("2d");
+                var pixelsPerDate = canvas.width / (weights.length - 1);
+                var pixelsPerWeight = canvas.height / Math.max.apply(Math, weights);
+
+                ctx1.beginPath();
+
+                for (i = 0; i < weights.length; i++) {
+                    var x = i * pixelsPerDate;
+                    var y = canvas.height - (weights[i] * pixelsPerWeight) / 2;
+
+                    if (i == 0) {
+                        ctx1.moveTo(x, y);
+                    } else {
+                        ctx1.lineTo(x, y);
+                    }
+
+                    if (i > 0 && i < weights.length -1) {
+                        ctx2.moveTo(x, y);
+                        ctx2.arc(x, y, 2, 0, Math.PI * 2, true);
+                    }
+                }
+
+                ctx1.stroke();
+                ctx2.fill();
+            }
+        });
+    </script>
+    <link href="@Url.Content("~/Assets/Stylesheets/history.css")" rel="stylesheet" type="text/css" />
 }
 
 <h2>History</h2>
 
-@foreach (var keyValuePair in Model)
-{
-    <h3>@keyValuePair.Key</h3>
-    
-    <ul>
-        @foreach (var activity in keyValuePair.Value)
-         {
-             <li>@activity.Date - @activity.Weight</li>
-         }
-     </ul>
-}
+<h3>@ActivityName.Squat</h3>
+<canvas id="squat" class="graph" width="880" height="260">A modern browser is required to render this graph.</canvas>
+
+<div class="table-wrapper">
+    <table>
+        <tr>
+            @foreach (var record in Model.Single(x => x.Key == ActivityName.Squat).Value)
+            {
+                <td>
+                    <span class="date">@record.Date.ToString("dd/MM")</span>
+                    @record.Weight
+                </td>
+            }
+        </tr>
+    </table>
+</div>
+
+<h3>@ActivityName.BenchPress</h3>
+<canvas id="bench" class="graph" width="880" height="260">A modern browser is required to render this graph.</canvas>
+
+<div class="table-wrapper">
+    <table>
+        <tr>
+            @foreach (var record in Model.Single(x => x.Key == ActivityName.BenchPress).Value)
+            {
+                <td>
+                    <span class="date">@record.Date.ToString("dd/MM")</span>
+                    @record.Weight
+                </td>
+            }
+        </tr>
+    </table>
+</div>
+
+<h3>@ActivityName.OverheadPress</h3>
+<canvas id="overhead" class="graph" width="880" height="260">A modern browser is required to render this graph.</canvas>
+
+<div class="table-wrapper">
+    <table>
+        <tr>
+            @foreach (var record in Model.Single(x => x.Key == ActivityName.OverheadPress).Value)
+            {
+                <td>
+                    <span class="date">@record.Date.ToString("dd/MM")</span>
+                    @record.Weight
+                </td>
+            }
+        </tr>
+    </table>
+</div>
+
+<h3>@ActivityName.Deadlift</h3>
+<canvas id="deadlift" class="graph" width="880" height="260">A modern browser is required to render this graph.</canvas>
+
+<div class="table-wrapper">
+    <table>
+        <tr>
+            @foreach (var record in Model.Single(x => x.Key == ActivityName.Deadlift).Value)
+            {
+                <td>
+                    <span class="date">@record.Date.ToString("dd/MM")</span>
+                    @record.Weight
+                </td>
+            }
+        </tr>
+    </table>
+</div>

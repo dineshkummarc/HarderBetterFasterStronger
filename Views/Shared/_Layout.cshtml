@@ -6,19 +6,22 @@
     <meta charset="utf-8" />
     <title>@ViewBag.Title</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="@Url.Content("~/Assets/Javascript/jquery.color.js")"></script>
+    <link href="@Url.Content("~/Assets/Stylesheets/reset.css")" rel="stylesheet" type="text/css" />
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans+Caption' rel='stylesheet' type='text/css'>
     <link href="@Url.Content("~/Assets/Stylesheets/layout.css")" rel="stylesheet" type="text/css" />
     @RenderSection("Head", false)
 </head>
 <body>
     <header>
-        <h1>Harder. Better. Faster. Stronger.</h1>
+        <img id="logo" src="@Url.Content("~/Assets/Images/logo.png")" alt="Harder Better Faster Stronger Logo" />
         <nav>
-            <ul id="menu">
-                <li>@Html.MenuActionLink("Current Workout", "Index", "Workout")</li>
-                <li>@Html.MenuActionLink("History", "Index", "History")</li>
-            </ul>
+            <a @if (ViewBag.Page == "Workout") { <text>class="active"</text> } href="@Url.Action("Index", "Workout")"><img src="@Url.Content("~/Assets/Images/workout.png")" alt="Workout" /></a>
+            <a @if (ViewBag.Page == "History") { <text>class="active"</text> } href="@Url.Action("Index", "History")"><img src="@Url.Content("~/Assets/Images/history.png")" alt="History" /></a>
         </nav>
     </header>
-    @RenderBody()
+    <div id="content-wrapper">
+        @RenderBody()
+    </div>
 </body>
 </html>
