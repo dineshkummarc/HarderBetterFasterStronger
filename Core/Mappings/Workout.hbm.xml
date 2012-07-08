@@ -2,8 +2,12 @@
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="HarderBetterFasterStronger" namespace="HarderBetterFasterStronger.Models">
     <class name="HarderBetterFasterStronger.Models.Workout, HarderBetterFasterStronger">
         <id name="Id" generator="identity" />
-        <property name="UserId" />
         <property name="Routine" />
-        <property name="Created" />
+        <property name="IsComplete" />
+        <property name="Date" />
+        <bag name="Activities" lazy="false" cascade="all" inverse="true">
+            <key column="WorkoutId" />
+            <one-to-many class="Activity" />
+        </bag>
     </class>
 </hibernate-mapping>

@@ -1,0 +1,27 @@
+﻿@model IDictionary<string, IList<HarderBetterFasterStronger.Models.Activity>>
+
+@{
+    ViewBag.Title = "History - Harder Better Faster Stronger";
+}
+
+@section Head {
+    <script src="@Url.Content("~/Assets/Javascript/history.js")"></script>
+}
+
+<h2>History</h2>
+
+@*@foreach (var keyValuePair in Model)
+{
+    <h3>@keyValuePair.Key</h3>
+    <table>
+        <tr>
+        @foreach (var value in keyValuePair.Value)
+        {
+            <td>
+                @value.Date
+                @value.Weight
+            </td>
+        }
+        </tr>
+    </table>
+}*@

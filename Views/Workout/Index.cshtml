@@ -1,0 +1,115 @@
+﻿@model HarderBetterFasterStronger.Models.Workout
+
+@{
+    ViewBag.Title = "Current Workout - Harder Better Faster Stronger";
+}
+
+@section Head {
+    <script src="@Url.Content("~/Assets/Javascript/workout.js")"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".success").click(function () {
+                var form = $(this).siblings("form");
+                form.children("input[name='isFailure']").val("False");
+
+                $.post('@Url.Action("CompleteActivity", "Workout")', form.serialize(), function (data) {
+                    alert(data);
+                });
+            });
+
+            $(".failure").click(function () {
+                var form = $(this).siblings("form");
+                form.children("input[name='isFailure']").val("True");
+
+                $.post('@Url.Action("CompleteActivity", "Workout")', form.serialize(), function (data) {
+                    alert(data);
+                });
+            });
+        });
+    </script>
+}
+
+<h2>Current Workout</h2>
+<h2>Routine @Model.Routine</h2>
+
+@foreach (var activity in Model.Activities)
+{
+    <div>
+        <h3>@activity.Name - @activity.IsComplete - @activity.IsFailure</h3>
+        <h4>Warm-up Sets</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th rowspan="2">Reps</th>
+                    <th rowspan="2">Weight</th>
+                    <th colspan="6">Plates per Side</th>
+                </tr>
+                <tr>
+                    <th>2.5</th>
+                    <th>5</th>
+                    <th>10</th>
+                    <th>25</th>
+                    <th>35</th>
+                    <th>45</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var set in activity.WarmupSets)
+                {
+                    <tr>
+                        <td>@set.Repetitions</td>
+                        <td>@set.Weight</td>
+                        <td>@set.PlatesPerSide.NumberOf2lbPlates</td>
+                        <td>@set.PlatesPerSide.NumberOf5lbPlates</td>
+                        <td>@set.PlatesPerSide.NumberOf10lbPlates</td>
+                        <td>@set.PlatesPerSide.NumberOf25lbPlates</td>
+                        <td>@set.PlatesPerSide.NumberOf35lbPlates</td>
+                        <td>@set.PlatesPerSide.NumberOf45lbPlates</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <h4>Work Sets</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th rowspan="2">Reps</th>
+                    <th rowspan="2">Weight</th>
+                    <th colspan="6">Plates per Side</th>
+                </tr>
+                <tr>
+                    <th>2.5</th>
+                    <th>5</th>
+                    <th>10</th>
+                    <th>25</th>
+                    <th>35</th>
+                    <th>45</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var set in activity.WorkSets)
+                {
+                    <tr>
+                        <td>@set.Repetitions</td>
+                        <td>@set.Weight</td>
+                        <td>@set.PlatesPerSide.NumberOf2lbPlates</td>
+                        <td>@set.PlatesPerSide.NumberOf5lbPlates</td>
+                        <td>@set.PlatesPerSide.NumberOf10lbPlates</td>
+                        <td>@set.PlatesPerSide.NumberOf25lbPlates</td>
+                        <td>@set.PlatesPerSide.NumberOf35lbPlates</td>
+                        <td>@set.PlatesPerSide.NumberOf45lbPlates</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        @using (Html.BeginForm())
+        {
+            @Html.Hidden("activityId", activity.Id)
+            @Html.Hidden("isFailure")
+        }
+
+        <a class="success" href="#">Success</a> <a class="failure" href="#">Failure</a>
+    </div>
+}

@@ -5,7 +5,7 @@ using System.Web;
 using NHibernate;
 using NHibernate.Cfg;
 
-namespace HarderBetterFasterStronger.Models
+namespace HarderBetterFasterStronger.Core
 {
     public sealed class NHibernateHelper
     {
@@ -17,12 +17,16 @@ namespace HarderBetterFasterStronger.Models
             sessionFactory = new Configuration().Configure().BuildSessionFactory();
         }
 
+        /// <summary>
+        /// Gets the current NHibernate session or opens a new one.
+        /// </summary>
+        /// <returns>A new NHibernate session.</returns>
         public static ISession GetCurrentSession()
         {
             HttpContext context = HttpContext.Current;
             ISession currentSession = context.Items[CurrentSessionKey] as ISession;
 
-            if (currentSession == null)
+            if (currentSession == null || !currentSession.IsOpen)
             {
                 currentSession = sessionFactory.OpenSession();
                 context.Items[CurrentSessionKey] = currentSession;
@@ -31,6 +35,9 @@ namespace HarderBetterFasterStronger.Models
             return currentSession;
         }
 
+        /// <summary>
+        /// Closes the current NHibernate session.
+        /// </summary>
         public static void CloseSession()
         {
             HttpContext context = HttpContext.Current;
@@ -43,6 +50,9 @@ namespace HarderBetterFasterStronger.Models
             }
         }
 
+        /// <summary>
+        /// Closes the NHibernate session factory.
+        /// </summary>
         public static void CloseSessionFactory()
         {
             if (sessionFactory != null)
