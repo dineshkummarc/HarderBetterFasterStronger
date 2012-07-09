@@ -3,7 +3,7 @@
     <session-factory>
         <property name="dialect">NHibernate.Dialect.MsSql2008Dialect</property>
         <property name="connection.driver_class">NHibernate.Driver.SqlClientDriver</property>
-        <property name="connection.connection_string">Data Source=localhost;Initial Catalog=HarderBetterFasterStronger;Integrated Security=True</property>
+        <property name="connection.connection_string_name">HarderBetterFasterStronger</property>
         <property name="show_sql">true</property>
         <mapping assembly="HarderBetterFasterStronger" />
     </session-factory>
