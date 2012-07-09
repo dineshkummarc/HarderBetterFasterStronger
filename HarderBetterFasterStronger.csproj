@@ -71,6 +71,7 @@
     <Compile Include="Controllers\WorkoutController.cs" />
     <Compile Include="Core\ActivityManager.cs" />
     <Compile Include="Core\Constants\ActivityName.cs" />
+    <Compile Include="Core\Constants\CompleteActivityStatus.cs" />
     <Compile Include="Core\Constants\RoutineName.cs" />
     <Compile Include="Helpers\HtmlHelpers.cs" />
     <Compile Include="Models\BenchPress.cs" />

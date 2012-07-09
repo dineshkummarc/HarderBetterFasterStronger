@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using HarderBetterFasterStronger.Models;
 using NHibernate;
 using HarderBetterFasterStronger.Core;
+using HarderBetterFasterStronger.Core.Constants;
 
 namespace HarderBetterFasterStronger.Controllers
 {
@@ -40,11 +41,11 @@ namespace HarderBetterFasterStronger.Controllers
 
             if (isWorkoutComplete)
             {
-                result = Content("workout complete");
+                result = Content(CompleteActivityStatus.WorkoutComplete);
             }
             else
             {
-                result = Content("activity complete");
+                result = Content(CompleteActivityStatus.ActivityComplete);
             }
 
             return result;
