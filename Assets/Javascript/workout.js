@@ -5,6 +5,8 @@
 
         activity.find("h3").text(activity.find("h3").text() + " (Complete)");
 
+        activity.css("background", "#FFFFFF");
+
         activity.animate({
             color: "#555",
             backgroundColor: "#212121"
