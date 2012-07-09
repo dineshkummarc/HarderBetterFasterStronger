@@ -13,8 +13,8 @@ h3
 .table-wrapper
 {
     margin: 0 0 40px 70px;
-    overflow: scroll-x;
-    padding-bottom 10px;
+    overflow: auto;
+    padding-bottom: 10px;
     width: 880px;
 }
 
