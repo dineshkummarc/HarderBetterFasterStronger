@@ -7,10 +7,11 @@
     <title>@ViewBag.Title</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script src="@Url.Content("~/Assets/Javascript/jquery.color.js")"></script>
+    @RenderSection("Javascript", false)
     <link href="@Url.Content("~/Assets/Stylesheets/reset.css")" rel="stylesheet" type="text/css" />
-    <link href='http://fonts.googleapis.com/css?family=PT+Sans+Caption' rel='stylesheet' type='text/css'>
+    <link href="http://fonts.googleapis.com/css?family=PT+Sans+Caption" rel="stylesheet" type="text/css">
     <link href="@Url.Content("~/Assets/Stylesheets/layout.css")" rel="stylesheet" type="text/css" />
-    @RenderSection("Head", false)
+    @RenderSection("Stylesheets", false)
 </head>
 <body>
     <header>

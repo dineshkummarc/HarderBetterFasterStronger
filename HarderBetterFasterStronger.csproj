@@ -91,7 +91,6 @@
   <ItemGroup>
     <Content Include=".gitattributes" />
     <Content Include=".gitignore" />
-    <Content Include="Assets\Fonts\Franchise-Bold.svg" />
     <Content Include="Assets\Images\history.png" />
     <Content Include="Assets\Images\logo.png" />
     <Content Include="Assets\Images\workout.png" />
@@ -101,6 +100,7 @@
     <Content Include="Assets\Stylesheets\history.css" />
     <Content Include="Assets\Stylesheets\layout.css" />
     <Content Include="Assets\Stylesheets\reset.css" />
+    <Content Include="Assets\Stylesheets\workout.css" />
     <Content Include="Dependencies\Iesi.Collections.dll" />
     <Content Include="Dependencies\Iesi.Collections.pdb" />
     <Content Include="Dependencies\Iesi.Collections.xml" />
@@ -131,10 +131,6 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Fonts\Franchise-Bold.eot" />
-    <None Include="Assets\Fonts\Franchise-Bold.otf" />
-    <None Include="Assets\Fonts\Franchise-Bold.ttf" />
-    <None Include="Assets\Fonts\Franchise-Bold.woff" />
     <None Include="README.md" />
     <Content Include="Views\History\Index.cshtml" />
   </ItemGroup>

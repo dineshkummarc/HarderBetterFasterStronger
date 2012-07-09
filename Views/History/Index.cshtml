@@ -6,54 +6,31 @@
     ViewBag.Page = "History";
 }
 
-@section Head {
+@section Javascript {
     <script src="@Url.Content("~/Assets/Javascript/history.js")"></script>
     <script type="text/javascript">
-        $(document).ready(function () {
-            var weights = [
-                @foreach (var activity in Model)
-                {
-                    if (activity.Key == "Barbell Squat")
+        var weights = {
+            @foreach (var activity in Model)
+            {
+                @:"@activity.Key" : [
+                    foreach (var record in activity.Value)
                     {
-                        foreach (var record in activity.Value)
-                        {
-                            <text>"@record.Weight",</text>
-                        }
+                        @:@record.Weight,
                     }
-                }
-            ];
-
-            var canvas = document.getElementById("squat");
-
-            if (canvas.getContext) {
-                var ctx1 = canvas.getContext("2d");
-                var ctx2 = canvas.getContext("2d");
-                var pixelsPerDate = canvas.width / (weights.length - 1);
-                var pixelsPerWeight = canvas.height / Math.max.apply(Math, weights);
-
-                ctx1.beginPath();
-
-                for (i = 0; i < weights.length; i++) {
-                    var x = i * pixelsPerDate;
-                    var y = canvas.height - (weights[i] * pixelsPerWeight) / 2;
-
-                    if (i == 0) {
-                        ctx1.moveTo(x, y);
-                    } else {
-                        ctx1.lineTo(x, y);
-                    }
-
-                    if (i > 0 && i < weights.length -1) {
-                        ctx2.moveTo(x, y);
-                        ctx2.arc(x, y, 2, 0, Math.PI * 2, true);
-                    }
-                }
-
-                ctx1.stroke();
-                ctx2.fill();
+                @:],
             }
+        };
+
+        $(document).ready(function () {
+            drawGraph("@ActivityName.Squat", "squat");
+            drawGraph("@ActivityName.BenchPress", "bench");
+            drawGraph("@ActivityName.OverheadPress", "overhead");
+            drawGraph("@ActivityName.Deadlift", "deadlift");
         });
     </script>
+}
+
+@section Stylesheets {
     <link href="@Url.Content("~/Assets/Stylesheets/history.css")" rel="stylesheet" type="text/css" />
 }
 
